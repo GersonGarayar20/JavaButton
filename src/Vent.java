@@ -16,6 +16,7 @@ import javax.swing.JPanel;
  */
 public class Vent {
     
+    //llamar componentes
     private JLabel lb1, lb2, lb3;
     private JButton btn1, btn2, btn3;
     private JPanel panel, r1, r2, r3;
@@ -23,10 +24,40 @@ public class Vent {
     
     public Vent(){
         
+        //instanciar componentes
         frame = new JFrame();
+        
+        //panel principal
         panel = new JPanel();
         frame.add(panel);
         
+        //lamando metodos
+        crearBotones();
+        
+        crearPaneles();
+        
+        //eventos click
+        btn1.addActionListener(e -> {
+            //nombre de la funcion(label a imprimir texto, que texto quieres mostrar)
+            mostrarPanel(lb1, "panel 1 desde la funcion");
+        });
+        
+        btn2.addActionListener(e -> {
+            mostrarPanel(lb2, "panel 2 desde la funcion");
+        });
+        
+        btn3.addActionListener(e -> {
+            mostrarPanel(lb3, "panel 3 desde la funcion");
+        });
+        
+        /* Configuración básica */
+        frame.setTitle("Botones en Java");
+        frame.setSize(500,500);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+    
+    public void crearBotones(){
         //crear botones
         btn1 = new JButton("1");
         btn2 = new JButton("2");
@@ -36,11 +67,19 @@ public class Vent {
         panel.add(btn1);
         panel.add(btn2);
         panel.add(btn3);
-        
+    }
+    
+    public void crearLabel(){
         //crear label
-        lb1 = new JLabel("");
+        lb1 = new JLabel();
         lb2 = new JLabel();
         lb3 = new JLabel();
+
+    }
+    
+    public void crearPaneles(){
+        //llama a la funcion
+        crearLabel();
         
         //crear rectangulos
         r1 = new JPanel();
@@ -48,11 +87,12 @@ public class Vent {
         r3 = new JPanel();
         
         //agragando color
-        r1.setBackground(Color.red);
-        r2.setBackground(Color.green);
-        r3.setBackground(Color.blue);
         
-        //añadir texto
+        r1.setBackground(new Color(220,220,220));
+        r2.setBackground(new Color(220,220,220));
+        r3.setBackground(new Color(220,220,220));
+        
+        //añadir label
         r1.add(lb1);
         r2.add(lb2);
         r3.add(lb3);
@@ -61,52 +101,18 @@ public class Vent {
         panel.add(r1);
         panel.add(r2);
         panel.add(r3);
-        
-        //evento click
-        btn1.addActionListener(e -> {
-            
-            String text = lb1.getText();
-            
-            if(text.isEmpty()){
-                lb1.setText("panel 1");
-            }else{
-                lb1.setText("");
-            }
-            
-        });
-        
-        btn2.addActionListener(e -> {
-            
-            String text = lb2.getText();
-            
-            if(text.isEmpty()){
-                lb2.setText("panel 2");
-            }else{
-                lb2.setText("");
-            }
-            
-        });
-        
-        btn3.addActionListener(e -> {
-            
-            String text = lb3.getText();
-            
-            if(text.isEmpty()){
-                lb3.setText("panel 3");
-            }else{
-                lb3.setText("");
-            }
-            
-        });
-        
-        
-        /* Configuración básica */
-        frame.setTitle("Botones en Java");
-        frame.setSize(500,500);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
     }
     
-    
+    public void mostrarPanel(JLabel label, String mensaje){
+        
+        String text = label.getText();
+            
+        if(text.isEmpty()){
+            label.setText(mensaje);
+        }else{
+            label.setText("");
+        }
+            
+    }
     
 }
